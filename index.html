@@ -1,4 +1,3 @@
-Aqui está o código HTML completo do arquivo anexado, sem cortes:
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -335,7 +334,7 @@ a.sq:hover{background:var(--mag)}.sq.off{opacity:.85}
 .lu-mark{animation:pop .45s both cubic-bezier(.2,.8,.2,1);animation-delay:var(--d,0ms)}
 .lu-t i{transform-origin:left;animation:bar .7s cubic-bezier(.7,0,.2,1) both;animation-delay:calc(var(--d,0ms) + 140ms)}
 @keyframes bar{from{transform:scaleX(0)}}
-.lu-slot:hover .lu-t i{background:var(--mag)}
+
 .lu-slot:hover .lu-a{color:var(--ink)}
 .e-mast h3.glitch::before,.e-mast h3.glitch::after{mix-blend-mode:normal;opacity:.85}
 @media(prefers-reduced-motion:reduce){.vault.slam span,.hero::after,.glitch::before,.glitch::after,.fcta::before,.lu-t i{animation:none}}
@@ -412,7 +411,7 @@ html{overflow-x:clip}
 .know h2,.know output{color:#e9e9ee}
 .hud{color:#e9e9ee}.menu{color:#e9e9ee}
 .time{background:#cfe3f7}
-.dot{font-family:"Space Mono",monospace;font-weight:700;letter-spacing:-.02em}
+.dot{font-family:Doto,"Space Mono",monospace;font-weight:900;letter-spacing:0}
 .band h2,.lu-title,.lu-band h4,.marq div,.e-marq div{font-family:Michroma,sans-serif;letter-spacing:-.01em}
 .marq div,.e-marq div{font-size:clamp(28px,5vw,60px)}
 .story h3{font-family:"Space Mono",monospace;font-weight:700}
@@ -420,14 +419,11 @@ html{overflow-x:clip}
 .foot nav{align-content:start;align-self:start}.foot nav small{display:block;padding:7px 0;line-height:1.55}
 .lu-title,.lu-band h4{font-family:Doto,"Space Mono",monospace!important;font-weight:900!important;letter-spacing:.02em;font-size:clamp(40px,7.5vw,84px)!important}
 /* textos em preto (leitura melhor que cinza) */
-.lu-a{color:#0c0c0f!important}.lu-slot:hover .lu-a{color:#ff2e9a!important}.lu-slot:hover .lu-t span{color:#ff2e9a}
+.lu-a{color:#0c0c0f!important}
 .lu-t span,.time,.what small,.story .rd,.story p,.foot small,.lead .code,.e-lead p,.empty,.empty2,.lu-empty{color:#0c0c0f}
 .homelu,dialog.evd{--gt:#0c0c0f}
 .story.big .rd,.story.big p{color:#fff}
 .hud .sec{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
-/* destaque rosa que percorre a programação sozinho */
-.lu-t i,.lu-a,.lu-t span{transition:background .35s,color .35s}
-.lu-slot.on .lu-t i{background:#ff2e9a}.lu-slot.on .lu-a,.lu-slot.on .lu-t span{color:#ff2e9a!important}
 </style>
 </head>
 <body>
@@ -445,7 +441,6 @@ html{overflow-x:clip}
 <nav class="menu" id="menu" aria-label="Sections">
  <a href="#cena">The scene<span>01</span></a><a href="#agenda">Events<span id="mc2">—</span></a><a href="#materias">Stories<span id="mc3">—</span></a><a href="#news">Newsletter<span>→</span></a>
 </nav>
-<a class="fcta" id="fcta" href="#agenda" data-tix2><span class="dot" id="fcd">--:--:--</span><b>Buy tickets</b></a>
 <div class="flash" id="flash" aria-hidden="true"></div>
 
 
@@ -515,7 +510,7 @@ html{overflow-x:clip}
 <dialog id="tk"><div class="dh"><span id="tkh">Tickets</span><button data-close aria-label="Close">×</button></div>
  <div class="db tk"><div class="pr dot" id="pr">R$—</div><div class="q"><button id="mn" aria-label="Less">−</button><span id="qv">1</span><button id="pl" aria-label="More">+</button></div><div id="goWrap"></div><small id="msg"></small></div></dialog>
 
-<dialog class="evd" id="evd" aria-label="Event lineup"><div class="dh"><span id="evh">Event</span><button data-close aria-label="Close">×</button></div><div class="db" id="evb"></div></dialog>
+<dialog class="evd" id="evd" aria-label="Event lineup"><div class="dh"><span id="evh">Event</span><button data-close aria-label="Close">×</button></div><div class="evb" id="evb"></div></dialog>
 
 <dialog class="adm" id="adm" aria-label="Painel admin">
  <div class="dh"><span>Admin // edite o webjornal</span><button data-close aria-label="Close">×</button></div>
@@ -653,11 +648,9 @@ $$('[data-tix]').forEach(b=>b.addEventListener('click',()=>{q=1;up();$('#tkh').t
  $('#goWrap').innerHTML=lk?`<a class="go2" href="${esc(lk)}" target="_blank" rel="noopener">Go to box office ↗</a>`:'';if(!lk)$('#msg').textContent='Box office link coming soon.';$('#tk').showModal()}));
 /* link de compra: do próximo rolê (Admin > Próximo rolê) ou do próximo evento com link */
 function tixLink(){const c=safeUrl(S.cfg.tix);if(c)return c;const e=upcoming().find(x=>safeUrl(x.link));return e?safeUrl(e.link):''}
-function updTix(){const lk=tixLink();for(const a of [$('#tixA'),$('#fcta')]){if(lk){a.href=lk;a.target='_blank';a.rel='noopener';a.classList.remove('nolink')}else{a.href='#agenda';a.removeAttribute('target');a.classList.add('nolink')}}
- $('#tixA span').innerHTML=lk?'Buy<br>tickets <i class="arr">↗</i>':'Tickets<br>soon';$('#fcta b').textContent=lk?'Buy tickets ↗':'View events'}
-$('#fcta').addEventListener('click',e=>{if(tixLink())return;e.preventDefault();const nu=nextUp();if(nu.id)openEv(nu.id);else $('#agenda').scrollIntoView({behavior:RM?'auto':'smooth'})});
+function updTix(){const lk=tixLink();for(const a of [$('#tixA')]){if(lk){a.href=lk;a.target='_blank';a.rel='noopener';a.classList.remove('nolink')}else{a.href='#agenda';a.removeAttribute('target');a.classList.add('nolink')}}
+ $('#tixA span').innerHTML=lk?'Buy<br>tickets <i class="arr">↗</i>':'Tickets<br>soon'}
 $('#nextup').addEventListener('click',()=>{const nu=nextUp();if(nu.id)openEv(nu.id);else $('#agenda').scrollIntoView({behavior:RM?'auto':'smooth'})});
-addEventListener('scroll',()=>$('#fcta').classList.toggle('on',scrollY>hero.offsetHeight*.7&&scrollY<document.body.scrollHeight-innerHeight*1.6),{passive:true});
 $('#pl').onclick=()=>{if(q<6)q++;up()};$('#mn').onclick=()=>{if(q>1)q--;up()};
 $$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target==d||e.target.closest('[data-close]'))d.close()}));
 
@@ -670,8 +663,8 @@ bg.onclick=()=>{const o=mn.classList.toggle('open');bg.setAttribute('aria-expand
 mn.addEventListener('click',e=>{if(e.target.closest('a')){mn.classList.remove('open');bg.setAttribute('aria-expanded',false);bg.textContent='Menu'}});
 document.addEventListener('keydown',e=>{if(e.key=='Escape'&&mn.classList.contains('open'))bg.click()});
 function tick(){const n=new Date();const nu=nextUp();$('#nuN').textContent=nu.n;$('#clk').textContent=n.toLocaleTimeString('pt-BR',{timeZone:TZ})+' MAO';$('#s4').classList.toggle('on',n.getSeconds()%3>0);
- const T=nu.t;if(!T){$('#cd').textContent=$('#nuC').textContent=$('#fcd').textContent='SOON';return}let s=Math.max(0,(T-n)/1000|0);const d=s/86400|0;s%=86400;const p=x=>String(x).padStart(2,'0');
- const txt=s+d?`${p(d)}D ${p(s/3600|0)}:${p(s%3600/60|0)}:${p(s%60)}`:'TONIGHT';$('#cd').textContent=$('#nuC').textContent=$('#fcd').textContent=txt}
+ const T=nu.t;if(!T){$('#cd').textContent=$('#nuC').textContent='SOON';return}let s=Math.max(0,(T-n)/1000|0);const d=s/86400|0;s%=86400;const p=x=>String(x).padStart(2,'0');
+ const txt=s+d?`${p(d)}D ${p(s/3600|0)}:${p(s%3600/60|0)}:${p(s%60)}`:'TONIGHT';$('#cd').textContent=$('#nuC').textContent=txt}
 function nextUp(){if(tgt)return{n:S.cfg.nome||'Next event',t:tgt,id:null};const e=upcoming()[0];if(!e)return{n:'Stay tuned',t:null};const h=String(e.h||'23').match(/\d{1,2}/);return{n:e.n,t:e.date?new Date(e.date+'T'+String(h?h[0]:'23').padStart(2,'0')+':00:00-04:00'):null,id:e.id}}
 tick();setInterval(tick,1000);
 {let x=0,h='';while(x<150){const w=1+(Math.random()*3|0);if(Math.random()>.4)h+=`<rect x="${x}" width="${w}" height="34" fill="#e4e3dc"/>`;x+=w+1}$('#bc').innerHTML=h}
@@ -893,10 +886,6 @@ $('#aform').addEventListener('submit',async e=>{e.preventDefault();if(!DB)return
  catch(err){alertMsg(err&&err.code=='quota_exceeded'?'Banco cheio: apague itens antigos.':'Não foi possível salvar. Tente de novo.')}
  btn.disabled=false});
 }
-
-/* destaque rosa que corre pela programação, horário por horário */
-setInterval(()=>{if(document.hidden)return;for(const c of document.querySelectorAll('.lu')){const sl=c.querySelectorAll('.lu-slot');if(!sl.length)continue;c._i=((c._i??-1)+1)%sl.length;sl.forEach((x,k)=>x.classList.toggle('on',k===c._i))}},1300);
 </script>
 </body>
 </html>
-
