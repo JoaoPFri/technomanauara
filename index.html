@@ -485,7 +485,7 @@ html{overflow-x:clip}
 
 <div class="marq" aria-hidden="true"><div id="marq"></div></div>
 
-<div class="band o rv" id="materias" data-name="stories"><h2 data-scr>Stories</h2><span class="lbl">Reports · interviews · memory</span></div>
+<div class="band o rv" id="materias" data-name="stories"><h2 data-scr>Stories</h2><span class="lbl">Reports · interviews · news</span></div>
 <section class="news" id="grid"><div class="empty2">Loading stories…</div></section>
 
 <section class="know" id="news" data-name="newsletter">
@@ -833,7 +833,6 @@ function useSample(){const add=n=>{const d=new Date(Date.now()+n*864e5);return d
  S.materias=[
   {id:'m1',k:'Report',big:true,date:add(-2),h:'Where Manaus dances: the warehouse nights of 2026',p:'From riverside warehouses to rooftop sessions, a new wave of parties is rewriting the city at night.',b:'When the last club downtown closed its doors, the scene did not stop. It moved to warehouses by the river, to rooftops and to beaches.\n\nOver six weeks we followed the crews behind these nights to understand what keeps the dance floor alive in Manaus.'},
   {id:'m2',k:'Interview',date:add(-6),h:'Rio Negro Sound System: building machines by hand',p:'The live act talks about drum machines, broken cables and playing without a laptop.',b:'They arrive four hours early to wire every machine. No set is ever the same.\n\n“If a cable fails, the crowd feels it. That is what makes it live.”'},
-  {id:'m3',k:'Memory',date:add(-11),h:'The river parties that started it all',p:'A short history of the boat parties that shaped the city’s underground.',b:'Before the warehouses, there were the boats.\n\nThis is the story of the first parties on the Rio Negro.'},
   {id:'m4',k:'News',date:add(-1),h:'VAULT 001 lineup announced',p:'Nightshift Collective, Iara, Boto and a live set from Rio Negro Sound System.',b:'The full lineup for VAULT 001 is out. Doors open at 11pm.'}];
  S.ready={eventos:true,materias:true};S.msg=null;
  const fn=$('#fnote');if(fn)fn.textContent='Manaus underground webzine.';
@@ -855,7 +854,7 @@ function useSample(){const add=n=>{const d=new Date(Date.now()+n*864e5);return d
 const TABS={
  cfg:{t:'Próximo rolê',doc:'site/config',f:[['nome','Nome do rolê','text'],['quando','Data e hora de início','datetime-local'],['fim','Termina (ex.: 06h)','text'],['local','Local','text'],['preco','Preço (R$)','number'],['tix','Link da bilheteria (https://)','url'],['intro','Texto de apresentação da cena','textarea'],['marq','Frase do letreiro','text']]},
  eventos:{t:'Agenda',lab:d=>d.n,sub:d=>dLabel(d.date)+(d.date&&d.date<today()?' · passado':''),f:[['n','Nome do evento','text',1],['date','Data','date',1],['h','Horário (ex.: 23h ou 11pm)','text'],['c','Organização / coletivo','text'],['l','Local','text'],['k','Tipo','select',0,[['techno','Techno'],['house','House'],['oficina','Oficina'],['outro','Outro']]],['hot','Destaque (faixa rosa)','check'],['link','Link do ingresso (https://)','url'],['preco','Preço (R$)','number'],['passe','Nome do ingresso (ex.: Passe 2 noites)','text'],['portas','Portas abrem (ex.: 23h)','text'],['fim','Termina (ex.: 10h)','text'],['desc','Descrição do evento','textarea'],['lineup','Programação: uma atração por linha com horário na frente (01h DJ Fulano). Linha sem horário entra no mesmo horário. Linha começando com * vira faixa amarela (ex.: * 00h virada).','tall'],['img','Foto / flyer','image']]},
- materias:{t:'Matérias',lab:d=>d.h,sub:d=>(d.k||'')+(d.date?' · '+dLabel(d.date):''),f:[['h','Título','text',1],['k','Tipo','select',0,[['Report','Reportagem (Report)'],['Interview','Entrevista (Interview)'],['Memory','Memória (Memory)'],['News','Nota (News)']]],['date','Data','date'],['p','Resumo (aparece no card)','textarea'],['b','Texto completo (separe parágrafos com uma linha em branco)','tall'],['big','Matéria de capa','check'],['img','Foto','image']]}};
+ materias:{t:'Matérias',lab:d=>d.h,sub:d=>(d.k||'')+(d.date?' · '+dLabel(d.date):''),f:[['h','Título','text',1],['k','Tipo','select',0,[['Report','Reportagem (Report)'],['Interview','Entrevista (Interview)'],['News','Nota (News)']]],['date','Data','date'],['p','Resumo (aparece no card)','textarea'],['b','Texto completo (separe parágrafos com uma linha em branco)','tall'],['big','Matéria de capa','check'],['img','Foto','image']]}};
 let tab='cfg',edId=null,armed=null;
 $('#admb').onclick=()=>{renderTabs();admRefresh(true);$('#adm').showModal()};
 function renderTabs(){$('#atabs').innerHTML=Object.entries(TABS).map(([k,v])=>`<button role="tab" data-t="${k}" aria-selected="${k==tab}">${v.t}</button>`).join('')}
